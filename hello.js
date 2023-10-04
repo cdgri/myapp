@@ -1,5 +1,5 @@
 var http = require('http');
-var contenst = function(req, resp) {
+var content = function(req, resp) {
 	resp.end("Hello dwkim" + "\n");
 	resp.writeHead(200);
 }
