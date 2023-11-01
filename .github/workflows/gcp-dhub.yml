@@ -24,7 +24,8 @@ env:
   DEPLOYMENT_NAME: my-deployment-8000 # TODO: update to deployment name
   REPOSITORY: https://github.com/cdgri/myapp # TODO: update to Artifact Registry docker repository
   IMAGE: static-site
-  NAME: hello
+  NAME: cdgritest
+  IMAGE_NAME: hello
 
 jobs:
   setup-build-publish-deploy:
@@ -87,9 +88,9 @@ jobs:
         NAME: cdgritest # 계정 명
         REPO: hello 
       run: |
-        docker build -t $REPOSITORY .
-        docker tag $REPOSITORY:latest $NAME/$REPOSITORY:latest
-        docker push $NAME/$REPOSITORY:latest
+        docker build -t $REPOSITORY_NAME .
+        docker tag $IMAGE_NAME:latest $NAME/$IMAGE_NAME:latest
+        docker push $NAME/$IMAGE_NAME:latest
         
     # Push the Docker image to Google Artifact Registry
     #- name: Publish
@@ -106,7 +107,7 @@ jobs:
     - name: Deploy
       run: |-
         # replacing the image name in the k8s template
-        ./kustomize edit set image cdgritest/hello:latest
+        ./kustomize edit set image $NAME/ $IMAGE_NAME:latest
         ./kustomize build . | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
