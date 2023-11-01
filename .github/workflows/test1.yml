@@ -16,11 +16,10 @@ name: Build and Deploy to Google Compute Engine
 
 on:
   push:
-    branches:
-      - master
+   branches: [ "main" ]
 
 env:
-  PROJECT_ID: $
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GCE_INSTANCE: gcpcicd-1 # TODO: update to instance name
   GCE_INSTANCE_ZONE: asia-northeast3-a # TODO: update to instance zone
 
