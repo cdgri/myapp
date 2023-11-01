@@ -18,9 +18,9 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GAR_LOCATION: asia-northeast3-a # TODO: update region of the Artifact Registry
+  GAR_LOCATION: asia-northeast3 # TODO: update region of the Artifact Registry
   GKE_CLUSTER: autopilot-cluster-2    # TODO: update to cluster name
-  GKE_ZONE: asia-northeast3-a   # TODO: update to cluster zone
+  GKE_ZONE: asia-northeast3   # TODO: update to cluster zone
   DEPLOYMENT_NAME: my-deployment-8000 # TODO: update to deployment name
   REPOSITORY: https://github.com/cdgri/myapp # TODO: update to Artifact Registry docker repository
   IMAGE: static-site
